@@ -43,6 +43,4 @@ var shijing = function() {
   local.context.作者 = "刘畅";
 }
 
-shijing();
-
 module.exports = shijing;
