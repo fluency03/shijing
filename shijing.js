@@ -31,13 +31,10 @@ function shijing() {
     remote.context.bonus = "UNLOCKED";
   }).listen(5001);
 
-
   logger.info("Remote REPL started on port 5001.");
-
 
   //A "local" node repl with a custom prompt
   var local = repl.start("诗经::本地> ");
-
 
   // Exposing the function "mood" to the local REPL's context.
   local.context.mood = mood;
