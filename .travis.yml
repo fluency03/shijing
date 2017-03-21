@@ -1,4 +1,10 @@
 language: node_js
+
 node_js:
-  - "iojs"
-  - "6"
+  - stable
+
+install:
+  - npm install
+
+script:
+  - npm test
