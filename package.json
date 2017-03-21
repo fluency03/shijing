@@ -1,0 +1,19 @@
+{
+  "name": "shi",
+  "version": "0.0.1",
+  "description": "诗经",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluency03/shi.git"
+  },
+  "author": "Chang Liu <fluency.03@gmail.com> (http://fluency03.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluency03/shi/issues"
+  },
+  "homepage": "https://github.com/fluency03/shi#readme"
+}
