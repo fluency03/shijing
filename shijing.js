@@ -21,7 +21,7 @@ var mood = function () {
 };
 
 
-function shijing() {
+var shijing = function() {
   //A remote node repl that you can telnet to!
   net.createServer(function (socket) {
     var remote = repl.start("诗经::远程> ", socket);
