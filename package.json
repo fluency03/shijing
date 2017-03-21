@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/fluency03/shi.git"
   },
+  "keywords": [
+    "shi",
+    "诗经",
+    "repl"
+  ],
   "author": "Chang Liu <fluency.03@gmail.com> (http://fluency03.com)",
   "license": "MIT",
   "bugs": {
