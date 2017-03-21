@@ -1,26 +1,26 @@
 {
-  "name": "shi",
+  "name": "shijing",
   "version": "0.0.1",
   "description": "诗经",
-  "main": "shi.js",
+  "main": "shijing.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fluency03/shi.git"
+    "url": "git+https://github.com/fluency03/shijing.git"
   },
   "keywords": [
-    "shi",
+    "shijing",
     "诗经",
     "repl"
   ],
   "author": "Chang Liu <fluency.03@gmail.com> (http://fluency03.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fluency03/shi/issues"
+    "url": "https://github.com/fluency03/shijing/issues"
   },
-  "homepage": "https://github.com/fluency03/shi#readme",
+  "homepage": "https://github.com/fluency03/shijing#readme",
   "dependencies": {
     "net": "^1.0.2",
     "repl": "^0.1.3",

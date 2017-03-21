@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Shi
+ * shijing
  *
  * @author fluency.03@gmail.com (Chang Liu)
  */
@@ -20,13 +20,13 @@ var mood = function () {
   return m[Math.floor(Math.random()*m.length)];
 };
 
-function shi() {
+function shijing() {
   //A remote node repl that you can telnet to!
   net.createServer(function (socket) {
     var remote = repl.start("诗经::远程> ", socket);
     //Adding "mood" and "bonus" to the remote REPL's context.
     remote.context.mood = mood;
-    remote.context.诗经 = "shi";
+    remote.context.诗经 = "shijing";
     remote.context.bonus = "UNLOCKED";
   }).listen(5001);
 
@@ -40,11 +40,11 @@ function shi() {
 
   // Exposing the function "mood" to the local REPL's context.
   local.context.mood = mood;
-  local.context.诗经 = "shi";
-  local.context.shi = "诗经";
+  local.context.诗经 = "shijing";
+  local.context.shijing = "诗经";
   local.context.作者 = "刘畅";
 }
 
-shi();
+shijing();
 
-module.exports = shi;
+module.exports = shijing;

@@ -1,8 +1,8 @@
 'use strict';
 
 var expect = require('chai').expect;
-// var shi = require('../shi');
+// var shijing = require('../shijing');
 
-// describe('#shi', function() {
+// describe('#shijing', function() {
 //
 // });
