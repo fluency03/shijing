@@ -20,6 +20,7 @@ var mood = function () {
   return m[Math.floor(Math.random()*m.length)];
 };
 
+
 function shijing() {
   //A remote node repl that you can telnet to!
   net.createServer(function (socket) {
