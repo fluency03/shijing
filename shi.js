@@ -2,7 +2,8 @@
 
 /**
  * Shi
- * Author: Chang Liu (fluencu.03@gmail.com)
+ *
+ * @author fluency.03@gmail.com (Chang Liu)
  */
 
 'use strict';
@@ -10,10 +11,15 @@
 var net = require("net");
 var repl = require("repl");
 
+var logger = require("./logger");
+
+var print = console.log;
+
 var mood = function () {
-    var m = [ "^__^", "-___-;", ">.<", "<_>" ];
-    return m[Math.floor(Math.random()*m.length)];
+  var m = [ "^__^", "-___-;", ">.<", "<_>" ];
+  return m[Math.floor(Math.random()*m.length)];
 };
+
 
 //A remote node repl that you can telnet to!
 net.createServer(function (socket) {
@@ -23,10 +29,13 @@ net.createServer(function (socket) {
   remote.context.bonus = "UNLOCKED";
 }).listen(5001);
 
-console.log("Remote REPL started on port 5001.");
+
+logger.info("Remote REPL started on port 5001.");
+
 
 //A "local" node repl with a custom prompt
 var local = repl.start("诗经> ");
+
 
 // Exposing the function "mood" to the local REPL's context.
 local.context.mood = mood;
