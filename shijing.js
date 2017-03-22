@@ -11,14 +11,10 @@ var net = require("net");
 var repl = require("repl");
 var Q = require("q");
 
-// var ShuToNumber = require("./shu-to-number");
-// var NumberToShu = require("./number-to-shu");
-// var shus = {零:0, 一:1, 二:2, 三:3, 四:4, 五:5, 六:6, 七:7, 八:8, 九:9, 十:10, 百:1e2, 千:1e3, 万:1e4, 亿:1e8};
-
-var parseShijing = require("./parse-shijing");
-
+var shijingData = require('./shijing.json');
+var NumberToShu = require('./num-to-shu.json');
+var ShuToNumber = require('./shu-to-num.json');
 var logger = require("./logger");
-
 var print = console.log;
 
 
@@ -37,7 +33,7 @@ var mood = function() {
  * @return {string}      a random key.
  */
 var randomKey = function(keys) {
-  return keys[ keys.length * Math.random() << 0];
+  return keys[keys.length * Math.random() << 0];
 };
 
 /**
@@ -63,25 +59,65 @@ var getShijing = function() {
  * @return {string} one piece of shijing.
  */
 var getOnePian = function(data, key) {
-  return key + "\r\n" + data[key].join("\r\n");
+  var poem = data[key];
+  return "\r\n" +
+    poem.chapter + '.' + poem.section + '.' + poem.title + "\r\n" +
+    poem.content.join("\r\n") +
+    "\r\n";
+}
+
+
+/**
+ * [evalInput description]
+ * @param  {[type]}   cmd      [description]
+ * @param  {[type]}   context  [description]
+ * @param  {[type]}   filename [description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+function evalInput(cmd, context, filename, callback) {
+  var result;
+  print('------------------------------------------');
+  print(cmd);
+  print('------------------------------------------');
+  print(context);
+  print('------------------------------------------');
+  print(filename);
+  print('------------------------------------------');
+  print(callback);
+  callback(null, cmd.trim());
+}
+
+/**
+ * [myWriter description]
+ * @param  {[type]} output [description]
+ * @return {[type]}        [description]
+ */
+function writer(output) {
+  if (typeof output === 'integer' && output >= 1 && output <=305) {
+    print(typeof output, output);
+    return getOnePian(shijingData, output);
+  }
 }
 
 /**
  * Define REPL server and relevant commands, and Start it.
  * @param  {object} data shijing data.
  */
-var startRepl = function(data) {
+var startRepl = function() {
 
-  var keys = Object.keys(data);
+  var keys = Object.keys(shijingData);
 
-  var replServer = repl.start({prompt: "诗经> "});
+  var replServer = repl.start({
+    prompt: "诗经> "
+  });
 
   replServer.defineCommand('一首', {
     help: '诗经一首',
     action() {
       this.lineParser.reset();
       this.bufferedCommand = '';
-      print(getOnePian(data, randomKey(keys)));
+      print(getOnePian(shijingData, randomKey(keys)));
       this.displayPrompt();
     }
   });
@@ -96,6 +132,16 @@ var startRepl = function(data) {
     }
   });
 
+  replServer.defineCommand('编号', {
+    help: '诗经一首',
+    action(shu) {
+      this.lineParser.reset();
+      this.bufferedCommand = '';
+      print(getOnePian(shijingData, ShuToNumber[shu]));
+      this.displayPrompt();
+    }
+  });
+
   replServer.context.shijing = "诗经";
   replServer.context.什么 = "诗经";
 }
@@ -104,9 +150,7 @@ var startRepl = function(data) {
  * shijing
  */
 var shijing = function() {
-  getShijing()
-    .then(startRepl)
-    .catch(print);
+  startRepl();
 }
 
 module.exports = shijing;
