@@ -5,10 +5,10 @@
 
 var fs = require('fs')
 var readline = require("readline");
-
+var path = require('path')
 
 var reader = readline.createInterface({
-  input: fs.createReadStream("./shijing.txt"),
+  input: fs.createReadStream(path.resolve(__dirname, 'shijing.txt')),
   output: fs.createWriteStream("/dev/null"),
   terminal: false
 });
