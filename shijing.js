@@ -11,8 +11,8 @@ var net = require("net");
 var repl = require("repl");
 var Q = require("q");
 
-// var ShuToNumber = require("./ShuToNumber");
-// var NumberToShu = require("./NumberToShu");
+// var ShuToNumber = require("./shu-to-number");
+// var NumberToShu = require("./number-to-shu");
 // var shus = {零:0, 一:1, 二:2, 三:3, 四:4, 五:5, 六:6, 七:7, 八:8, 九:9, 十:10, 百:1e2, 千:1e3, 万:1e4, 亿:1e8};
 
 var parseShijing = require("./parse-shijing");
