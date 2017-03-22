@@ -11,9 +11,9 @@ var net = require("net");
 var repl = require("repl");
 var Q = require("q");
 
-var shijingData = require('./shijing.json');
-var NumberToShu = require('./num-to-shu.json');
-var ShuToNumber = require('./shu-to-num.json');
+var shijingData = require('./json/shijing.json');
+var NumberToShu = require('./json/num-to-shu.json');
+var ShuToNumber = require('./json/shu-to-num.json');
 var logger = require("./logger");
 var print = console.log;
 
