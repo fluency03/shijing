@@ -10,6 +10,7 @@
 var net = require("net");
 var repl = require("repl");
 var Q = require("q");
+var emoji = require('node-emoji');
 
 var shijingData = require('./json/shijing.json');
 var NumberToShu = require('./json/num-to-shu.json');
@@ -19,15 +20,6 @@ var print = console.log;
 
 
 /**
- * Get a random mood.
- * @return {string} a random mood.
- */
-var mood = function() {
-  var m = [ "^__^", "-___-;", ">.<", "<_>" ];
-  return m[Math.floor(Math.random() * m.length)];
-};
-
-/**
  * Get a random key from an array of keys.
  * @param  {array}  keys an array of keys.
  * @return {string}      a random key.
@@ -35,6 +27,7 @@ var mood = function() {
 var randomKey = function(keys) {
   return keys[keys.length * Math.random() << 0];
 };
+
 
 /**
  * Load shijing.
@@ -53,6 +46,7 @@ var getShijing = function() {
 
   return deferred.promise;
 }
+
 
 /**
  * Merge one piece of shijing.
@@ -88,6 +82,7 @@ function evalInput(cmd, context, filename, callback) {
   callback(null, cmd.trim());
 }
 
+
 /**
  * [myWriter description]
  * @param  {[type]} output [description]
@@ -99,6 +94,7 @@ function writer(output) {
     return getOnePian(shijingData, output);
   }
 }
+
 
 /**
  * Define REPL server and relevant commands, and Start it.
@@ -127,7 +123,7 @@ var startRepl = function() {
     action() {
       this.lineParser.reset();
       this.bufferedCommand = '';
-      print(mood());
+      print(emoji.random().emoji);
       this.displayPrompt();
     }
   });

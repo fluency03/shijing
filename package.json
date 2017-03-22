@@ -23,6 +23,7 @@
   "homepage": "https://github.com/fluency03/shijing#readme",
   "dependencies": {
     "net": "^1.0.2",
+    "node-emoji": "^1.5.1",
     "q": "^1.5.0",
     "repl": "^0.1.3",
     "winston": "^2.3.1"
