@@ -16,20 +16,67 @@
 
 Start a REPL interface.
 
+```javascript
+诗经> shijing
+'诗经'
+```
 
 ### shijing.poem(key)
 
 Return one poem based on the given `key`.
+
+- `key`: *integer or number*, range 1 ~ 305.
+
+
+- *Return*: *object*, with properties of `title`, `chapter`, `section`, and `content`. Example:
+
+  ```javascript
+  {
+    title: '葛覃',
+    chapter: '国风',
+    section: '周南',
+    content: [
+      '葛之覃兮，施于中谷，维叶萋萋。黄鸟于飞，集于灌木，其鸣喈喈。',
+      '葛之覃兮，施于中谷，维叶莫莫。是刈是濩，为絺为绤，服之无斁。',
+      '言告师氏，言告言归。薄污我私，薄浣我衣。害浣害否，归宁父母。'
+    ]
+  }
+  ```
 
 
 ### shijing.random()
 
 Randomly get one poem.
 
+- *Return*: *object*, with properties of `title`, `chapter`, `section`, and `content`. Example:
+
+  ```javascript
+  {
+    title: '东方之日',
+    chapter: '国风',
+    section: '齐风',
+    content: [
+      '东方之日兮，彼姝者子，在我室兮。在我室兮，履我即兮。',
+      '东方之月兮，彼姝者子，在我闼兮。在我闼兮，履我发兮。'
+    ]
+  }
+  ```
+
+
+
 
 ### shijing.emoji()
 
 Randomly get a emoji.
+
+- *Return*: *object*, with properties of `key` and `emoji`. Example:
+
+  ```javascript
+  {
+    key: 'thumbsup',
+    emoji: '👍'
+  }
+  ```
 
 
 
