@@ -207,9 +207,14 @@
 🚿
 ```
 
-## Demo
 
-<!-- ![shijing](./shijing-light.png) -->
+
+## Liscence
+
+[MIT](https://github.com/fluency03/shijing/blob/master/LICENSE)
+
+
+
 
 
 [npm-image]: https://img.shields.io/npm/v/express.svg
