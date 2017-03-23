@@ -47,41 +47,6 @@ var getOnePoem = function(key) {
 
 
 /**
- * [evalInput description]
- * @param  {[type]}   cmd      [description]
- * @param  {[type]}   context  [description]
- * @param  {[type]}   filename [description]
- * @param  {Function} callback [description]
- * @return {[type]}            [description]
- */
-// function evalInput(cmd, context, filename, callback) {
-//   var result;
-//   print('------------------------------------------');
-//   print(cmd);
-//   print('------------------------------------------');
-//   print(context);
-//   print('------------------------------------------');
-//   print(filename);
-//   print('------------------------------------------');
-//   print(callback);
-//   callback(null, cmd.trim());
-// }
-
-
-/**
- * [myWriter description]
- * @param  {[type]} output [description]
- * @return {[type]}        [description]
- */
-// function writer(output) {
-//   if (typeof output === 'integer' && output >= 1 && output <=305) {
-//     print(typeof output, output);
-//     return getOnePoem(output);
-//   }
-// }
-
-
-/**
  * Define REPL server and relevant commands, and Start it.
  */
 var startRepl = function() {
@@ -133,16 +98,18 @@ var shijing = function() {
 
   // get one poem based on key
   this.poem = function(key) {
-    return getOnePoem(key);
+    return shijingJSON[key];
   };
 
   // get one poem randomly
   this.random = function() {
-    return getOnePoem(randomKey(keys));
+    return shijingJSON[randomKey(keys)];
   };
 
   // get one emoji randomly
   this.emoji = emoji.random;
 }
 
-module.exports = shijing;
+module.exports = (function() {
+  return new shijing();
+})();
