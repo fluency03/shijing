@@ -3,6 +3,8 @@
  * @author fluency.03@gmail.com (Chang Liu)
  */
 
+'use strict';
+
 var winston = require('winston');
 winston.emitErrs = true;
 

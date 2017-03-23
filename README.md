@@ -10,11 +10,11 @@
 [![MIT license](https://img.shields.io/npm/l/shijing.svg)](https://opensource.org/licenses/MIT)
 
 
-## API Reference
+## API Reference | 接口
 
 ### shijing.start()
 
-Start a REPL interface.
+Start a REPL interface. | 开启一个 REPL 交互界面。
 
 ```javascript
 诗经> shijing
@@ -23,9 +23,9 @@ Start a REPL interface.
 
 ### shijing.poem(key)
 
-Return one poem based on the given `key`.
+Return one poem based on the given `key`. | 基于`key`返回一首诗。
 
-- `key`: *integer or number*, range 1 ~ 305.
+- `key`: *integer or number*, range 1 ~ 305. | *整数或数字*， 范围 1 ~ 305。
 
 
 - *Return*: *object*, with properties of `title`, `chapter`, `section`, and `content`. Example:
@@ -46,7 +46,7 @@ Return one poem based on the given `key`.
 
 ### shijing.random()
 
-Randomly get one poem.
+Randomly get one poem. | 随机返回一首诗。
 
 - *Return*: *object*, with properties of `title`, `chapter`, `section`, and `content`. Example:
 
@@ -67,7 +67,7 @@ Randomly get one poem.
 
 ### shijing.emoji()
 
-Randomly get a emoji.
+Randomly get a emoji. | 随机返回一个Emoji。
 
 - *Return*: *object*, with properties of `key` and `emoji`. Example:
 
@@ -80,7 +80,7 @@ Randomly get a emoji.
 
 
 
-## CLI Commands
+## CLI Commands | 命令
 
 Create a file `run.js` as simple as:
 
@@ -106,9 +106,27 @@ Then `node run.js`!
 '诗经'
 ```
 
+### .清理
+
+Clear the content on the console screen. | 清理终端屏幕的内容。
+
+
+### .再见
+
+Close the REPL. | 关闭 REPL 交互环境。
+
+```javascript
+诗经> .再见
+再见!
+```
+
+
+
+
 ### .一首
 
-随机显示一篇诗文。
+Randomly display a poem. | 随机显示一篇诗文。
+
 
 ```javascript
 诗经> .一首
@@ -216,7 +234,7 @@ Then `node run.js`!
 
 ### .编号
 
-显示指定编号诗文。编号范围：`一 ～ 三百零五`。
+Display a poem based on given number. | 显示指定编号诗文。编号范围：`一 ～ 三百零五`。
 
 ```javascript
 诗经> .编号 五十五
@@ -258,7 +276,7 @@ Then `node run.js`!
 
 ### .心情
 
-随机显示一个Emoji。
+Randomly display an Emoji. | 随机显示一个Emoji。
 
 ```javascript
 诗经> .心情

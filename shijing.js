@@ -85,6 +85,19 @@ var startRepl = function() {
     }
   });
 
+  replServer.defineCommand("清理", {
+    help: "清理屏幕",
+    action() {
+      process.stdout.write('\u001B[2J\u001B[0;0f');
+      process.stdout.write('诗经> ');
+    }
+  });
+
+  replServer.defineCommand('再见', function() {
+    print('再见!');
+    this.close();
+  });
+
   replServer.context.shijing = "诗经";
   replServer.context.什么 = "诗经";
 }
