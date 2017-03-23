@@ -3,14 +3,10 @@
  * @author fluency.03@gmail.com (Chang Liu)
  */
 
-// node packages
 var winston = require('winston');
 winston.emitErrs = true;
 
-/**
- * a winston logger
- * @type {winston.Logger}
- */
+
 var logger = new winston.Logger({
   transports: [
     new winston.transports.File({
@@ -33,7 +29,7 @@ var logger = new winston.Logger({
   exitOnError: false
 });
 
-// export
+
 module.exports = logger;
 module.exports.stream = {
   write: function(message, encoding){

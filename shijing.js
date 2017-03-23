@@ -12,11 +12,14 @@ var repl = require("repl");
 var Q = require("q");
 var emoji = require('node-emoji');
 
-var shijingData = require('./json/shijing.json');
+var shijingJSON = require('./json/shijing.json');
 var NumberToShu = require('./json/num-to-shu.json');
 var ShuToNumber = require('./json/shu-to-num.json');
 var logger = require("./logger");
 var print = console.log;
+
+
+var keys = Object.keys(shijingJSON);
 
 
 /**
@@ -30,30 +33,12 @@ var randomKey = function(keys) {
 
 
 /**
- * Load shijing.
- * @return {promise} a promise with shijing data resolved, or error rejected.
- */
-var getShijing = function() {
-  var deferred = Q.defer();
-
-  parseShijing(function(error, data) {
-    if (error) {
-      deferred.reject(new Error(error));
-    } else {
-      deferred.resolve(data);
-    }
-  });
-
-  return deferred.promise;
-}
-
-
-/**
  * Merge one piece of shijing.
- * @return {string} one piece of shijing.
+ * @param  {string} key key (1 ~ 305) of shijingJSON
+ * @return {string}     one piece of shijing.
  */
-var getOnePian = function(data, key) {
-  var poem = data[key];
+var getOnePoem = function(key) {
+  var poem = shijingJSON[key];
   return "\r\n" +
     poem.chapter + '.' + poem.section + '.' + poem.title + "\r\n" +
     poem.content.join("\r\n") +
@@ -69,18 +54,18 @@ var getOnePian = function(data, key) {
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
  */
-function evalInput(cmd, context, filename, callback) {
-  var result;
-  print('------------------------------------------');
-  print(cmd);
-  print('------------------------------------------');
-  print(context);
-  print('------------------------------------------');
-  print(filename);
-  print('------------------------------------------');
-  print(callback);
-  callback(null, cmd.trim());
-}
+// function evalInput(cmd, context, filename, callback) {
+//   var result;
+//   print('------------------------------------------');
+//   print(cmd);
+//   print('------------------------------------------');
+//   print(context);
+//   print('------------------------------------------');
+//   print(filename);
+//   print('------------------------------------------');
+//   print(callback);
+//   callback(null, cmd.trim());
+// }
 
 
 /**
@@ -88,21 +73,18 @@ function evalInput(cmd, context, filename, callback) {
  * @param  {[type]} output [description]
  * @return {[type]}        [description]
  */
-function writer(output) {
-  if (typeof output === 'integer' && output >= 1 && output <=305) {
-    print(typeof output, output);
-    return getOnePian(shijingData, output);
-  }
-}
+// function writer(output) {
+//   if (typeof output === 'integer' && output >= 1 && output <=305) {
+//     print(typeof output, output);
+//     return getOnePoem(output);
+//   }
+// }
 
 
 /**
  * Define REPL server and relevant commands, and Start it.
- * @param  {object} data shijing data.
  */
 var startRepl = function() {
-
-  var keys = Object.keys(shijingData);
 
   var replServer = repl.start({
     prompt: "诗经> "
@@ -113,7 +95,7 @@ var startRepl = function() {
     action() {
       this.lineParser.reset();
       this.bufferedCommand = '';
-      print(getOnePian(shijingData, randomKey(keys)));
+      print(getOnePoem(randomKey(keys)));
       this.displayPrompt();
     }
   });
@@ -133,7 +115,7 @@ var startRepl = function() {
     action(shu) {
       this.lineParser.reset();
       this.bufferedCommand = '';
-      print(getOnePian(shijingData, ShuToNumber[shu]));
+      print(getOnePoem(ShuToNumber[shu]));
       this.displayPrompt();
     }
   });
@@ -146,7 +128,21 @@ var startRepl = function() {
  * shijing
  */
 var shijing = function() {
-  startRepl();
+  // start the REPL
+  this.start = startRepl;
+
+  // get one poem based on key
+  this.poem = function(key) {
+    return getOnePoem(key);
+  };
+
+  // get one poem randomly
+  this.random = function() {
+    return getOnePoem(randomKey(keys));
+  };
+
+  // get one emoji randomly
+  this.emoji = emoji.random;
 }
 
 module.exports = shijing;

@@ -10,7 +10,40 @@
 [![MIT license](https://img.shields.io/npm/l/shijing.svg)](https://opensource.org/licenses/MIT)
 
 
+## API Reference
+
+### shijing.start()
+
+Start a REPL interface.
+
+
+### shijing.poem(key)
+
+Return one poem based on the given `key`.
+
+
+### shijing.random()
+
+Randomly get one poem.
+
+
+### shijing.emoji()
+
+Randomly get a emoji.
+
+
+
 ## CLI Commands
+
+Create a file `run.js` as simple as:
+
+```javascript
+var shijing = require("shijing");
+
+shijing.start();
+```
+
+Then `node run.js`!
 
 ### shijing
 
@@ -209,7 +242,7 @@
 
 
 
-## Liscence
+## License
 
 [MIT](https://github.com/fluency03/shijing/blob/master/LICENSE)
 
