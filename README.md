@@ -1,7 +1,8 @@
+![shijing](./shijing-logo.png)
+
 # 诗经 | shijing
 
 桃之夭夭，灼灼其华。 ---《国风.周南.桃夭》
-
 
 [![Build Status](https://travis-ci.org/fluency03/shijing.svg?branch=master)](https://travis-ci.org/fluency03/shijing)
 [![Version npm](https://img.shields.io/npm/v/shijing.svg)](https://www.npmjs.com/package/shijing)
