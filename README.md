@@ -9,6 +9,12 @@
 [![Downloads npm](https://img.shields.io/npm/dt/shijing.svg)](https://www.npmjs.com/package/shijing)
 [![MIT license](https://img.shields.io/npm/l/shijing.svg)](https://opensource.org/licenses/MIT)
 
+## TODOs | 未完成
+
+- English translation of the poem
+- Full text search functionality
+- Autocompeletion of command in REPL
+- etc.
 
 ## API Reference | 接口
 
