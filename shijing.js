@@ -20,7 +20,7 @@ var print = console.log;
 
 
 var keys = Object.keys(shijingJSON);
-
+var commands = '.break .clear .exit .help .save .load .editor .一首 .心情 .编号 .清理 .再见';
 
 /**
  * Get a random key from an array of keys.
@@ -47,12 +47,31 @@ var getOnePoem = function(key) {
 
 
 /**
+ * A completer function for TAB completion in REPL.
+ * @param  {string} line input content
+ * @return {array}       array of possible hits and original line
+ */
+var completer = function(line) {
+  var completions = commands.split(' ');
+
+  function search(c) {
+    return c.indexOf(line) === 0;
+  }
+
+  var hits = completions.filter(search);
+  // show all completions if none found
+  return [hits.length ? hits : completions, line];
+}
+
+
+/**
  * Define REPL server and relevant commands, and Start it.
  */
 var startRepl = function() {
 
   var replServer = repl.start({
-    prompt: "诗经> "
+    prompt: "诗经> ",
+    completer: completer
   });
 
   replServer.defineCommand('一首', {
