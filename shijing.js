@@ -11,6 +11,8 @@ var net = require("net");
 var repl = require("repl");
 var Q = require("q");
 var emoji = require('node-emoji');
+var fulltextsearchlight = require('full-text-search-light');
+var search = new fulltextsearchlight();
 
 var shijingJSON = require('./json/shijing.json');
 var NumberToShu = require('./json/num-to-shu.json');
@@ -20,7 +22,29 @@ var print = console.log;
 
 
 var keys = Object.keys(shijingJSON);
-var commands = '.break .clear .exit .help .save .load .editor .一首 .心情 .编号 .清理 .再见';
+var commands = '.break .clear .exit .help .save .load .editor ' +
+               '.一首 .心情 .编号 .搜索 .清理 .再见';
+
+
+/**
+ * Add all poems into search.
+ */
+var addForSearch = function() {
+  for (var order in shijingJSON) {
+    search.add(shijingJSON[order]);
+  }
+}
+
+
+/**
+ * Search the given content.
+ * @param  {string} word content for search
+ * @return {array}       poems matched
+ */
+var searchWord = function(word) {
+  return search.search(word);
+}
+
 
 /**
  * Get a random key from an array of keys.
@@ -39,6 +63,16 @@ var randomKey = function(keys) {
  */
 var getOnePoem = function(key) {
   var poem = shijingJSON[key];
+  return mergeOnePoem(poem);
+}
+
+
+/**
+ * Marge the content of one poem object into string.
+ * @param  {object} poem one poem object
+ * @return {string}      merged string from one poem
+ */
+var mergeOnePoem = function(poem) {
   return "\r\n" +
     poem.chapter + '.' + poem.section + '.' + poem.title + "\r\n" +
     poem.content.join("\r\n") +
@@ -54,11 +88,11 @@ var getOnePoem = function(key) {
 var completer = function(line) {
   var completions = commands.split(' ');
 
-  function search(c) {
+  function searchCommands(c) {
     return c.indexOf(line) === 0;
   }
 
-  var hits = completions.filter(search);
+  var hits = completions.filter(searchCommands);
   // show all completions if none found
   return [hits.length ? hits : completions, line];
 }
@@ -104,6 +138,18 @@ var startRepl = function() {
     }
   });
 
+  replServer.defineCommand('搜索', {
+    help: '搜索',
+    action(word) {
+      this.lineParser.reset();
+      this.bufferedCommand = '';
+      searchWord(word).forEach(function(poem) {
+        print(mergeOnePoem(poem));
+      });
+      this.displayPrompt();
+    }
+  });
+
   replServer.defineCommand("清理", {
     help: "清理屏幕",
     action() {
@@ -125,6 +171,9 @@ var startRepl = function() {
  * shijing
  */
 var shijing = function() {
+
+  addForSearch();
+
   // start the REPL
   this.start = startRepl;
 
@@ -137,6 +186,9 @@ var shijing = function() {
   this.random = function() {
     return shijingJSON[randomKey(keys)];
   };
+
+  // search, get an arry of poems based on given content
+  this.search = searchWord;
 
   // get one emoji randomly
   this.emoji = emoji.random;
