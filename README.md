@@ -98,6 +98,15 @@ shijing.start();
 
 Then `node run.js`!
 
+For all commands start with `.`, you can use TAB to output possible commands, like:
+
+```
+诗经> .
+.break   .clear   .exit    .help    .save    .load    .editor  .一首      .心情
+.编号      .清理      .再见
+```
+
+
 ### shijing
 
 ```javascript
