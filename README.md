@@ -69,7 +69,7 @@ Randomly get one poem. | 随机返回一首诗。
 
 
 
-  ### shijing.search(content)
+### shijing.search(content)
 
 Search poems based on given `content`. | 根据给定内容搜索诗词。
 
